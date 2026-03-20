@@ -1,0 +1,16 @@
+C:\Users\param\repos\FlowerShop.Dto\bin\Release\net9.0\FlowerShop.Dto.deps.json
+C:\Users\param\repos\FlowerShop.Dto\bin\Release\net9.0\FlowerShop.Dto.dll
+C:\Users\param\repos\FlowerShop.Dto\bin\Release\net9.0\FlowerShop.Dto.pdb
+C:\Users\param\repos\FlowerShop.Dto\bin\Release\net9.0\FlowerShop.Data.dll
+C:\Users\param\repos\FlowerShop.Dto\bin\Release\net9.0\FlowerShop.Data.pdb
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.csproj.AssemblyReference.cache
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.AssemblyInfoInputs.cache
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.AssemblyInfo.cs
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.csproj.CoreCompileInputs.cache
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.sourcelink.json
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerSh.866D22D2.Up2Date
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.dll
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\refint\FlowerShop.Dto.dll
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\FlowerShop.Dto.pdb
+C:\Users\param\repos\FlowerShop.Dto\obj\Release\net9.0\ref\FlowerShop.Dto.dll
