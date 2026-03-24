@@ -11,6 +11,15 @@ namespace FlowerShop.Web.ApiKey
         {
             if (context.Request.Path.StartsWithSegments("/api"))
             {
+                // Если маршрут не существует — возвращаем 404, не 401
+                // Сканер не узнает какие /api/* пути реально есть
+                var endpoint = context.GetEndpoint();
+                if (endpoint is null)
+                {
+                    context.Response.StatusCode = 404;
+                    return;
+                }
+
                 if (!context.Request.Headers.TryGetValue("X-API-Key", out var extractedApiKey) || _options.Key != extractedApiKey)
                 {
                     context.Response.StatusCode = 401;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FlowerShop.Dto")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fde25cdcfbfa500aa0ee0e482c87e604d0ce0462")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce52872b6fcbd3738eb3940e6bd59e764fb58e53")]
 [assembly: System.Reflection.AssemblyProductAttribute("FlowerShop.Dto")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FlowerShop.Dto")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,10 +1,13 @@
 using FlowerShop.Data;
 using FlowerShop.Web.ApiKey;
+using FlowerShop.Web.RateLimit;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,31 @@ builder.Services.AddDbContext<FlowerDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString(nameof(FlowerDbContext))));
 
 builder.Services.Configure<ApiKeyOptions>(builder.Configuration.GetSection("ApiKey"));
+
+builder.Services.AddRateLimiter(options =>
+{
+    // Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ Р»РёРјРёС‚: 60 Р·Р°РїСЂРѕСЃРѕРІ РІ РјРёРЅСѓС‚Сѓ РЅР° IP
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(context =>
+    {
+        var ip = context.Connection.RemoteIpAddress?.ToString() ?? "unknown";
+        return RateLimitPartition.GetFixedWindowLimiter(ip, _ => new FixedWindowRateLimiterOptions
+        {
+            PermitLimit = 60,
+            Window = TimeSpan.FromMinutes(1),
+            QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
+            QueueLimit = 0
+        });
+    });
+
+    options.OnRejected = async (ctx, _) =>
+    {
+        ctx.HttpContext.Response.StatusCode = 429;
+        ctx.HttpContext.Response.Headers["Retry-After"] = "60";
+        await ctx.HttpContext.Response.WriteAsync("Too many requests. Please try again later.");
+    };
+});
+
+builder.Services.AddSingleton<NotFoundRateLimitMiddleware>();
 
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
@@ -63,6 +91,9 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
+app.UseRateLimiter();
+app.UseMiddleware<NotFoundRateLimitMiddleware>();
+
 app.UseRouting();
 
 app.UseMiddleware<ApiKeyMiddleware>();
@@ -90,7 +121,7 @@ using (var scope = app.Services.CreateScope())
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "Ошибка при миграции базы данных.");
+        logger.LogError(ex, "пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.");
     }
 }
 
